@@ -1,36 +1,36 @@
-> View(gobp)
->  library(readxl)
->   gobp <- read_excel("D:/HuaweiMoveData/Users/tbj/Desktop/1117draw/gobp.xlsx",sheet = "Sheet2")
-> display_number = 20#显示数量设置
-> 
-> go = as.data.frame(gobp)[1:display_number[1], ]
-> 
-> kk = as.data.frame(gobp)
-> 
-> rownames(kk) = 1:nrow(kk)
-> 
-> kk$order=factor(rev(as.integer(rownames(kk))),labels = rev(kk$Description)) #似乎是设置顺序？
-> 
-> pdf(file="gobp.pdf",width = 7,height = 5)
-> 
-> ggplot(kk,aes(y=order,x=Gene_Ratio,fill=LogP))+  #Count、LogP看具体表头代表，这里Count是在通路上的靶点数，LogP就是p值的另一种表现形式
-+     
-+     geom_bar(stat = "identity",width=0.8)+ #柱状图宽度设置
-+     
-+     scale_fill_gradient(low = "red",high ="blue" )+
-+     
-+     labs(title = "GO_BP",  #设置标题、x轴和Y轴名称
-+          
-+          x = "Gene Ratio(%)",
-+          
-+          y = "Go term")+
-+     
-+     theme(axis.title.x = element_text(face = "bold",size = 16),
-+           
-+           axis.title.y = element_text(face = "bold",size = 16),
-+           
-+           legend.title = element_text(face = "bold",size = 16))+
-+     
-+     theme_bw()
-> 
-> dev.off()
+View(gobp)
+  library(readxl)
+   gobp <- read_excel("D:/HuaweiMoveData/Users/tbj/Desktop/1117draw/gobp.xlsx",sheet = "Sheet2")
+ display_number = 20#显示数量设置
+ 
+ go = as.data.frame(gobp)[1:display_number[1], ]
+ 
+ kk = as.data.frame(gobp)
+ 
+ rownames(kk) = 1:nrow(kk)
+ 
+ kk$order=factor(rev(as.integer(rownames(kk))),labels = rev(kk$Description)) #似乎是设置顺序？
+ 
+ pdf(file="gobp.pdf",width = 7,height = 5)
+
+ ggplot(kk,aes(y=order,x=Gene_Ratio,fill=LogP))+  #Count、LogP看具体表头代表，这里Count是在通路上的靶点数，LogP就是p值的另一种表现形式
+     
+     geom_bar(stat = "identity",width=0.8)+ #柱状图宽度设置
+    
+    scale_fill_gradient(low = "red",high ="blue" )+
+    
+     labs(title = "GO_BP",  #设置标题、x轴和Y轴名称
+          
+         x = "Gene Ratio(%)",
+         
+          y = "Go term")+
+     
+     theme(axis.title.x = element_text(face = "bold",size = 16),
+           
+           axis.title.y = element_text(face = "bold",size = 16),
+           
+           legend.title = element_text(face = "bold",size = 16))+
+     
+     theme_bw()
+ 
+ dev.off()
