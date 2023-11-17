@@ -1,0 +1,52 @@
+display_number = 30#显示数量设置
+> 
+> kegg = as.data.frame(kegg)[1:display_number[1], ]
+> 
+> kk = as.data.frame(kegg)
+> 
+> rownames(kk) = 1:nrow(kk)
+> 
+> kk$order=factor(rev(as.integer(rownames(kk))),labels = rev(kk$Description)) #似乎是设置顺序？
+> 
+> ggplot(kk,aes(y=order,x=Count,fill=LogP))+  #Count、LogP看具体表头代表，这里Count是在通路上的靶点数，LogP就是p值的另一种表现形式
+     
+    geom_bar(stat = "identity",width=0.8)+ #柱状图宽度设置
+     
+     scale_fill_gradient(low = "red",high ="blue" )+
+     
+     labs(title = "KEGG Pathways Enrichment",  #设置标题、x轴和Y轴名称
+          
+          x = "Gene number",
+          
+          y = "Pathway")+
+     
+     theme(axis.title.x = element_text(face = "bold",size = 16),
+           
+           axis.title.y = element_text(face = "bold",size = 16),
+           
+           legend.title = element_text(face = "bold",size = 16))+
+     
+     theme_bw()
+> 
+> pdf(file="kegg.pdf",width = 7,height = 5)
+> ggplot(kk,aes(y=order,x=Count,fill=LogP))+
+     
+    geom_bar(stat = "identity",width=0.8)+ #柱状图宽度设置
+     
+     scale_fill_gradient(low = "red",high ="blue" )+
+    
+     labs(title = "KEGG Pathways Enrichment",  #设置标题、x轴和Y轴名称
+          
+          x = "Gene number",
+          
+          y = "Pathway")+
+     
+     theme(axis.title.x = element_text(face = "bold",size = 16),
+           
+           axis.title.y = element_text(face = "bold",size = 16),
+           
+           legend.title = element_text(face = "bold",size = 16))+
+    
+    theme_bw()
+> 
+> dev.off()
