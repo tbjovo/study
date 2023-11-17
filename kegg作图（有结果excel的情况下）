@@ -1,3 +1,6 @@
+library(readxl)
+kegg <- read_excel("D:/HuaweiMoveData/Users/tbj/Desktop/1117draw/kegg.xlsx",sheet = "Sheet2") #可以设置打开哪个sheet
+
 display_number = 30#显示数量设置
 > 
 > kegg = as.data.frame(kegg)[1:display_number[1], ]
