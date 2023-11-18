@@ -7,7 +7,7 @@ kegg = as.data.frame(kegg)[1:display_number[1], ]
  
 kk = as.data.frame(kegg)
  
-rownames(kk) = 1:nrow(kk)
+rownames(kk) = 1:nrow(kk) #对"kk"数据框的行名进行重新编号，使其从1到数据框行数的顺序排列。
  
 kk$order=factor(rev(as.integer(rownames(kk))),labels = rev(kk$Description)) #似乎是设置顺序？
 #在"kk"数据框中添加一列名为"order"，其中包含"kk$Description"的反向顺序，并且使用这个顺序作为标签
