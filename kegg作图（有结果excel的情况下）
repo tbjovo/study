@@ -10,6 +10,9 @@ kk = as.data.frame(kegg)
 rownames(kk) = 1:nrow(kk)
  
 kk$order=factor(rev(as.integer(rownames(kk))),labels = rev(kk$Description)) #似乎是设置顺序？
+#在"kk"数据框中添加一列名为"order"，其中包含"kk$Description"的反向顺序，并且使用这个顺序作为标签
+#"kk$Description"是指"kk"数据框中的一个名为"Description"的列
+#反向顺序是因为作图时是含量高的从高到低，但是他们的序号是从低到高
 
 pdf(file="kegg.pdf",width = 7,height = 5)
 
