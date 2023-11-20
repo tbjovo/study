@@ -14,6 +14,8 @@ kk$order=factor(rev(as.integer(rownames(kk))),labels = rev(kk$Description)) #似
 #"kk$Description"是指"kk"数据框中的一个名为"Description"的列
 #反向顺序是因为作图时是含量高的从高到低，但是他们的序号是从低到高
 
+
+#绘制柱状图
 pdf(file="kegg.pdf",width = 7,height = 5)
 
 ggplot(kk,aes(y=order,x=Count,fill=LogP))+  #Count、LogP看具体表头代表，这里Count是在通路上的靶点数，LogP就是p值的另一种表现形式
@@ -35,5 +37,22 @@ ggplot(kk,aes(y=order,x=Count,fill=LogP))+  #Count、LogP看具体表头代表�
            legend.title = element_text(face = "bold",size = 16))+
     
     theme_bw()
+
+dev.off()
+
+
+#接下来是绘制气泡图
+pdf(file="keggbubble.pdf",width = 7,height = 5)
+ggplot(kk,aes(y=order,x=Gene_Ratio))+
+ 
+     geom_point(aes(size=Count,color=LogP))+
+ 
+     scale_color_gradient(low = "red",high ="blue")+
+ 
+     labs(color=expression(LogP,size="Count"),
+ 
+       x="Gene Ratio",y="Pathways",title="KEGG Pathway Enrichment")+
+ 
+  theme_bw()
 
 dev.off()
